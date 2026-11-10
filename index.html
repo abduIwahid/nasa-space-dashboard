@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NASA Space Dashboard — APOD & Near-Earth Asteroids</title>
+<meta name="description" content="Astronomy Picture of the Day and a 7-day near-Earth asteroid table from NASA's APIs, with quota tracking and resilient retries. Vanilla JavaScript.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <h1>NASA Space Dashboard</h1>
+    <p class="tagline">Today's astronomy picture and the asteroids passing Earth this week — live from NASA.</p>
+  </div>
+</header>
+
+<div id="offline-banner" class="offline-banner" role="alert" hidden>
+  You are offline. The last successful Astronomy Picture of the Day is shown from cache where available.
+</div>
+
+<main class="wrap">
+  <section class="settings-panel" aria-label="NASA API key settings">
+    <label for="key-input">Your NASA API key (free at api.nasa.gov) — stored only in this browser</label>
+    <div class="settings-row">
+      <input id="key-input" type="password" placeholder="Leave empty to use DEMO_KEY" autocomplete="off">
+      <button id="key-save" class="btn btn-secondary" type="button">Save key</button>
+      <button id="key-clear" class="btn btn-secondary" type="button">Clear</button>
+    </div>
+    <p id="key-note" class="hint"></p>
+    <p id="quota-line" class="quota-line" role="status"></p>
+  </section>
+
+  <section aria-label="Astronomy Picture of the Day">
+    <div class="section-head">
+      <h2>Astronomy Picture of the Day</h2>
+      <div class="date-controls">
+        <label for="apod-date">Date</label>
+        <input id="apod-date" type="date">
+        <button id="apod-today" class="btn btn-secondary" type="button">Today</button>
+      </div>
+    </div>
+    <p class="hint">APOD follows US dates — your "today" may be ahead of NASA's, so the picker never allows a future date and defaults to NASA's latest.</p>
+    <div id="apod-status" class="status-region" role="status" aria-live="polite"></div>
+    <div id="apod-region"></div>
+    <div id="apod-error" class="state-box state-error" hidden>
+      <h3>APOD could not be loaded</h3>
+      <p id="apod-error-text">The request failed.</p>
+      <button id="apod-retry" class="btn" type="button">Try again</button>
+    </div>
+  </section>
+
+  <section aria-label="Near-Earth asteroids">
+    <div class="section-head">
+      <h2>Near-Earth asteroids — next 7 days</h2>
+      <button id="neo-retry" class="btn btn-secondary" type="button">Reload table</button>
+    </div>
+    <div id="neo-status" class="status-region" role="status" aria-live="polite"></div>
+    <div id="neo-region"></div>
+    <div id="neo-error" class="state-box state-error" hidden>
+      <h3>Asteroid data could not be loaded</h3>
+      <p id="neo-error-text">The request failed.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data from <a href="https://api.nasa.gov" target="_blank" rel="noopener">NASA APIs</a> (APOD and NeoWs). NASA imagery is generally not copyrighted, but individual APOD entries may carry a photographer's copyright — credits are shown whenever NASA provides them.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

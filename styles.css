@@ -1,0 +1,86 @@
+/* NASA Space Dashboard — design tokens
+   Base: deep space ink on paper. One accent: mission orange #E4572E.
+   Solid colours only. */
+:root {
+  --bg: #F5F4EF;
+  --surface: #FFFFFF;
+  --surface-alt: #EBE8DD;
+  --ink: #101623;
+  --text: #1B1B1B;
+  --text-on-ink: #EDEBE2;
+  --text-muted: #5B594F;
+  --border: #D6D1BF;
+  --accent: #E4572E;
+  --accent-dark: #B23E1C;
+  --danger: #B3261E;
+  --danger-soft: #FBEAEA;
+  --hazard-bg: #B3261E;
+  --focus: #1A56C4;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(16, 22, 35, 0.14);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+.wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 0 16px; }
+a { color: var(--accent-dark); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.site-header { background: var(--ink); color: var(--text-on-ink); padding: 28px 0; }
+.site-header h1 { margin: 0; font-size: clamp(1.6rem, 5vw, 2.4rem); }
+.tagline { margin: 6px 0 0; color: #B9BDC9; }
+
+.offline-banner { background: #FFF4D6; color: #5C4500; border-bottom: 2px solid #E0B400; padding: 10px 16px; text-align: center; font-weight: 600; }
+.state-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 18px; text-align: center; margin: 14px 0; }
+.state-box h3 { margin-top: 0; }
+.state-error { border-color: var(--danger); background: var(--danger-soft); }
+.status-region { min-height: 1.5em; color: var(--text-muted); margin: 10px 0 2px; }
+.hint { color: var(--text-muted); font-size: 0.92rem; margin: 8px 0 0; }
+
+.settings-panel { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius); padding: 16px; margin: 20px 0 6px; }
+.settings-panel label { font-weight: 700; display: block; margin-bottom: 8px; }
+.settings-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.settings-row input { flex: 1 1 220px; padding: 11px 12px; font-size: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
+.btn { background: var(--accent); color: #FFFFFF; border: 1px solid var(--accent); padding: 10px 16px; border-radius: var(--radius); font-size: 1rem; cursor: pointer; font-weight: 600; }
+.btn:hover { background: var(--accent-dark); }
+.btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn-secondary:hover { background: var(--surface-alt); }
+.quota-line { font-weight: 600; margin: 12px 0 0; min-height: 1.5em; }
+.quota-line.low { color: var(--danger); }
+
+.section-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 26px; }
+.section-head h2 { margin: 0; font-size: 1.35rem; }
+.date-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.date-controls input { padding: 9px 10px; font-size: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); }
+
+.apod-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); margin-top: 8px; }
+.apod-media { background: var(--ink); text-align: center; }
+.apod-media img { max-width: 100%; max-height: 560px; display: block; margin: 0 auto; }
+.apod-media iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
+.apod-body { padding: 20px 22px; }
+.apod-body h3 { margin: 0 0 4px; font-size: 1.3rem; }
+.apod-meta { color: var(--text-muted); margin: 0 0 10px; font-size: 0.93rem; }
+.apod-body .explanation { margin: 0; }
+.cached-note { background: #FFF4D6; color: #5C4500; border: 1px solid #E0B400; border-radius: var(--radius); padding: 10px 14px; margin-top: 8px; font-weight: 600; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { background: var(--surface-alt); font-size: 0.9rem; }
+tbody tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; color: #FFFFFF; background: var(--ink); }
+.badge.hazard { background: var(--hazard-bg); }
+.badge.safe { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
+
+.skeleton { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-top: 8px; }
+.skel { background: var(--surface-alt); border-radius: 6px; }
+.skel-media { height: 280px; }
+.skel-line { height: 15px; width: 65%; margin-top: 14px; }
+.skel-line.short { width: 40%; }
+
+.site-footer { border-top: 1px solid var(--border); padding: 18px 0 26px; color: var(--text-muted); font-size: 0.92rem; margin-top: 30px; }
+@media (max-width: 480px) {
+  .apod-body { padding: 16px; }
+  .section-head { margin-top: 22px; }
+}
