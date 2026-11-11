@@ -208,7 +208,15 @@ function renderNeo(rows) {
     '<td class="num">' + fmtNum(r.missKm) + ' km</td>' +
     '<td class="num">' + r.missLunar.toFixed(1) + '</td>' +
     '<td>' + (r.hazardous ? '<span class="badge hazard">Potentially hazardous</span>' : '<span class="badge safe">Not hazardous</span>') + '</td></tr>').join('');
-  el.neoRegion.innerHTML =
+  const closest = rows[0];
+  const hazardCount = rows.filter((r) => r.hazardous).length;
+  const largest = rows.reduce((a, b) => (b.diameterM > a.diameterM ? b : a), rows[0]);
+  const highlight =
+    '<p class="neo-highlight">Closest approach this week: <b>' + esc(closest.name) + '</b> passes ' +
+    fmtNum(closest.missKm) + ' km away — about ' + closest.missLunar.toFixed(1) + '× the distance to the Moon. ' +
+    'Largest object: <b>' + esc(largest.name) + '</b> at roughly ' + fmtNum(largest.diameterM) + ' m across. ' +
+    hazardCount + ' of ' + rows.length + ' objects are flagged potentially hazardous.</p>';
+  el.neoRegion.innerHTML = highlight +
     '<div class="table-wrap"><table><thead><tr>' +
     '<th scope="col">Name</th><th scope="col">Approach date</th>' +
     '<th scope="col" class="num">Est. diameter</th><th scope="col" class="num">Velocity</th>' +

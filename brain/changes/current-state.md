@@ -7,3 +7,4 @@
 **Verified:** app.js syntax (node --check); APOD + NeoWs field names against live NASA responses using DEMO_KEY.
 
 **Pending:** GitHub repo creation + deploy (owner decision: GitHub Pages vs Vercel); README demo GIF after deploy; Phase 2 level-ups (scatter chart, EPIC slideshow).
+- 2026-11-10 (later): NeoWs week highlights + first-person About shipped. Next: hosting choice (Pages vs Vercel) still open; a miss-distance scatter remains a Phase 2 candidate.
